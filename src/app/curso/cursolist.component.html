@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Novos Cursos</h1>
+
+    <div>
+            <input class="form-control" [(ngModel)]="filter"  placeholder="Search">   
+    </div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>image</th>
+            <th>curso</th>
+            <th>Preço</th>
+            <th>Rating</th>
+            <th>duração</th>
+            <th>Data de Lançamento</th>
+            <th>descrição</th>
+            <th>opções</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr *ngFor="let cursos of filtrodeCursos">
+                <td><img [src]="cursos.imageUrl" alt="logo do curso"></td>
+                <td>{{cursos.name}}</td>
+                <td>R$ {{cursos.price | virgula: '.':','}}</td>
+                <td><app-star [rating]="cursos.rating"></app-star></td>
+                <td>{{cursos.duration}}</td>
+                <td>{{cursos.releaseDate | date: 'dd/MM/yyyy'}} </td>
+                <td>{{cursos.description}}</td>
+                <td>
+                    <a [routerLink]="['/curso/info/', cursos.id]" class="btn btn-primary">info</a>
+                    <button (click)="deleteById(cursos.id)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+           
+</table>
+</div>
